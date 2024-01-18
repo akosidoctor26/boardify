@@ -31,8 +31,6 @@ const Sidebar = ({ storageKey = 't-sidebar-state' }: SidebarProps) => {
     },
   });
 
-  console.log(activeOrganization, userMemberships);
-
   const defaultAccordionValue: string[] = Object.keys(expanded).reduce(
     (acc: string[], key: string) => {
       if (expanded[key]) {
@@ -51,7 +49,15 @@ const Sidebar = ({ storageKey = 't-sidebar-state' }: SidebarProps) => {
   if (!isLoadedOrg || !isLoadedOrgList || userMemberships.isLoading) {
     return (
       <>
-        <Skeleton className="" />
+        <div className="flex items-center justify-between mb-2">
+          <Skeleton className="h-10 w-[50%]" />
+          <Skeleton className="h-10 w-10" />
+        </div>
+        <div className="space-y-2">
+          <NavItem.Skeleton />
+          <NavItem.Skeleton />
+          <NavItem.Skeleton />
+        </div>
       </>
     );
   }

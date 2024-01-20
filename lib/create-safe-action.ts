@@ -23,7 +23,6 @@ export const createSafeAction = <TInput, TOutput>(
 ) => {
   return async (data: TInput): Promise<ActionState<TInput, TOutput>> => {
     const validationResult = schema.safeParse(data);
-    // console.log('STARTHERE', validationResult.error.flatten());
     if (!validationResult.success) {
       return {
         fieldErrors: validationResult.error.flatten()

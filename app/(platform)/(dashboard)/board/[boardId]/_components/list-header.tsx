@@ -8,12 +8,14 @@ import { FormInput } from '@/components/form/form-input';
 import { useAction } from '@/hooks/use-action';
 import { updateList } from '@/actions/update-list';
 import { toast } from 'sonner';
+import ListOptions from './list-options';
 
 interface ListHeaderProps {
   data: List;
+  onAddCard: () => void;
 }
 
-const ListHeader = ({ data }: ListHeaderProps) => {
+const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
   const [title, setTitle] = useState(data.title);
   const [isEditing, setIsEditing] = useState(false);
   const formRef = useRef<ElementRef<'form'>>(null);
@@ -91,6 +93,7 @@ const ListHeader = ({ data }: ListHeaderProps) => {
           {title}
         </div>
       )}
+      <ListOptions onAddCard={onAddCard} data={data} />
     </div>
   );
 };
